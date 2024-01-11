@@ -24,6 +24,12 @@ jobs:
     - name: List current folder
       run : ls -la
 
+    - name: Git clone my repo
+      uses: action/checkout@v1
+
+    - name: List current folder
+      run : ls -la
+
 
   my_deploy:
     runs-on: ubuntu-latest
@@ -37,3 +43,6 @@ jobs:
         echo "Hello Message1"
         echo "Hello Message2"
         echo "Application name: ${{ env.VERSION }}"
+
+    - name: Lets test
+      run : ps -ef
