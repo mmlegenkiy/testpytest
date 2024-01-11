@@ -1,4 +1,7 @@
 name: My_Github_Actions_Basics
+env:
+  APPLICATION_NAME: 'MyApp'
+  VERSION: 'ver ${{ github.sha }}'
 
 on:
   push:
@@ -12,9 +15,22 @@ jobs:
     - name: Print Hello Message
       run : echo "Hello World from Testing"
 
+    - name: Execute few commands
+      run : |
+        echo "Hello Message1"
+        echo "Hello Message2"
+        echo "Application name: ${{ env.APPLICATION_NAME }}"
+
+
   my_deploy:
     runs-on: ubuntu-latest
     needs: [my_testing]
     steps:
     - name: Print Hello Message
       run : echo "Hello World from Deploy"
+
+    - name: Printing Deployment Package
+      run : |
+        echo "Hello Message1"
+        echo "Hello Message2"
+        echo "Application name: ${{ env.VERSION }}"
